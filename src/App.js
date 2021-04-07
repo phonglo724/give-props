@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import {Component} from 'react'
+import './App.css';
+import RedRoom from './components/RedRoom.js'
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <p>App Room</p>
+//       <RedRoom phrase="HEY FROM THE APP" />
+//     </div>
+//   );
+// }
+
+class App extends Component {
+
+  state = {
+    phrase: "HEY FROM THE APP"
+  }
+
+  handleClick = (event) => {
+    this.setState({
+      phrase: "STILL COMING FROM THE APP"
+    })
+  }
+
+  changePhrase = (text) => {
+    this.setState({
+      phrase: text
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+      <p>App Room</p>
+      <RedRoom changePhrase={this.changePhrase} phrase={this.state.phrase} />
+      <button onClick={this.handleClick}>Change Phrase State</button>
     </div>
-  );
+    );
+  }
 }
 
 export default App;
+
+
+
+
